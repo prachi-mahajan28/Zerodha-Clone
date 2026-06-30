@@ -1,0 +1,59 @@
+import React, { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+require("dotenv").config();
+
+const ProtectedRoute = ({ children }) => {
+  const [checking, setChecking] = useState(true);
+  const [authorized, setAuthorized] = useState(false);
+  const navigate = useNavigate();
+
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3002";
+  const FRONTEND_URL =
+    process.env.REACT_APP_FRONTEND_URL || "http://localhost:3000";
+
+  useEffect(() => {
+    // 1. Check if a token was just passed in the URL (coming from frontend signup)
+    const params = new URLSearchParams(window.location.search);
+    const urlToken = params.get("token");
+
+    if (urlToken) {
+      localStorage.setItem("token", urlToken);
+      // Clean the URL so token isn't visibly stuck in the address bar
+      navigate("/", { replace: true });
+    }
+
+    const token = urlToken || localStorage.getItem("token");
+
+    if (!token) {
+      setChecking(false);
+      setAuthorized(false);
+      return;
+    }
+
+    // 2. Verify token is still valid with backend
+    fetch(`${API_URL}/verify`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Invalid token");
+        setAuthorized(true);
+      })
+      .catch(() => {
+        localStorage.removeItem("token");
+        setAuthorized(false);
+      })
+      .finally(() => setChecking(false));
+  }, [navigate]);
+
+  if (checking) return <p>Loading...</p>;
+
+  if (!authorized) {
+    // Redirect back to the frontend app's login page (different port)
+    window.location.href = `${FRONTEND_URL}/signup`;
+    return null;
+  }
+
+  return children;
+};
+
+export default ProtectedRoute;
