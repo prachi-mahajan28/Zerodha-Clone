@@ -10,7 +10,7 @@ const Signup = () => {
 
   // Dashboard app runs on a different port — set this to your dashboard's URL
   const DASHBOARD_URL =
-    "zerodha-clone-dashboard-6l8xiq48q-prachi-mahajan28s-projects.vercel.app";
+    "https://zerodha-clone-dashboard-6l8xiq48q-prachi-mahajan28s-projects.vercel.app";
   const API_URL = "https://zerodha-clone-backend-acq6.onrender.com";
 
   const handleSubmit = async (e) => {

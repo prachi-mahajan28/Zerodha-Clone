@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
 
   const API_URL = "https://zerodha-clone-backend-acq6.onrender.com";
   const FRONTEND_URL =
-    " zerodha-clone-2s4ys05t6-prachi-mahajan28s-projects.vercel.app";
+    " https://zerodha-clone-2s4ys05t6-prachi-mahajan28s-projects.vercel.app";
 
   useEffect(() => {
     // 1. Check if a token was just passed in the URL (coming from frontend signup)
