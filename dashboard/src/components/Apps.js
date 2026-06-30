@@ -8,14 +8,7 @@ const Apps = () => {
     <BrowserRouter>
       <Routes>
         {/* Guard the entire application space under a protected layout route */}
-        <Route
-          path="/*"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/*" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );
