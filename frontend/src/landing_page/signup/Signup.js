@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-require("dotenv").config();
 
 const Signup = () => {
   const [isLogin, setIsLogin] = useState(false);
