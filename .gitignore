@@ -1,0 +1,19 @@
+# Dependency folders
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+dashboard/node_modules/
+
+# Local environment configuration files
+.env
+backend/.env
+frontend/.env
+dashboard/.env
+
+# Build outputs
+build/
+dist/
+
+# OS cache files
+.DS_Store
+Thumbs.db
