@@ -26,7 +26,7 @@ const Orders = () => {
 
   // Fetch the actual placed orders from the backend when the panel loads
   useEffect(() => {
-    axios.get("http://localhost:3002/allOrders").then((res) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/allOrders`).then((res) => {
       setOrders(res.data);
     });
   }, []);

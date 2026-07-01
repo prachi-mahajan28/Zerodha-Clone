@@ -14,7 +14,7 @@ import { GeneralContextProvider } from "./GeneralContext";
 const Dashboard = () => {
   const handleLogout = () => {
     localStorage.clear(); // Clear all auth data from the system
-    window.location.href = "http://localhost:3000"; // Return user to the public site
+    window.location.href = process.env.REACT_APP_FRONTEND_URL; // Return user to the public site
   };
   return (
     <div className="dashboard-container">
